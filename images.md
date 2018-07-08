@@ -7,16 +7,16 @@ permalink: /images/
 Currently available images.  
 You can reference these (along with the associated md5sum in your device boot configurations).
 
-# Raspbian Strech Lite - built on 6/21/2018
+# Raspbian Strech Lite - built on 7/7/2018
 ```json
 {
-  "initfs": {
-    "url": "https://api.cattlepi.com/images/global/initramfs.tgz",
-    "md5sum": "93a4eccacabdcce8eb5b8b68de6742cc"
-  },
   "rootfs": {
-    "url": "https://api.cattlepi.com/images/global/rootfs.sqsh",
-    "md5sum": "c1d44c65d29af575b2f6685b6a91d2da"
+    "url": "https://api.cattlepi.com/images/global/raspbian-lite/2018-06-29/v1/rootfs.sqsh",
+    "md5sum": "4107c52307accb38fbc9f565b72fb355"
+  },
+  "initfs": {
+    "url": "https://api.cattlepi.com/images/global/raspbian-lite/2018-06-29/v1/initramfs.tgz",
+    "md5sum": "c02bdc27ebb48b9fc7441e603aa6aeb3"
   }
 }
 ```
