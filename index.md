@@ -20,7 +20,9 @@ When leveraging cattlepi, one can:
  * build and serve the images while leveraging a prebuilt API
  * leverage prebuilt images and a prebuilt API
 
- `api.cattlepi.com` provides the back-end and is also available to serve the standard image files. You can use the API to configure your own devices. You can even point the boot process to images that you 
+ `api.cattlepi.com` provides the back-end and is also available to serve the standard image files.  
+ You can use the API to configure your own devices.  
+ In the configuration you can point the boot process to images that you have built on your own. 
 
  On this website you will find:
   * [Flow](flow.md): understand the boot flow and how the loader interacts with the API 
