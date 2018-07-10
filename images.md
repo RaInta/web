@@ -7,7 +7,7 @@ permalink: /images/
 Currently available images.  
 You can reference these (along with the associated md5sum in your device boot configurations).
 
-# Raspbian Strech Lite - built on 6/21/2018
+# Raspbian Stretch Lite - built on 21 June 2018
 ```json
 {
   "initfs": {
