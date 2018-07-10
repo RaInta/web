@@ -55,7 +55,7 @@ The final step of the boot process consists of building the root filesystem. The
 
 To make some implications explicit:
  * the Raspberry Pi needs to be able to acquire a network address through DHCP _and_ needs to be able to do internet traffic. The boot process will fail if either are not met
- * all operations that happen during boot will be re-tried with exponential back-off in case of failure (i.e. failure of one API call does not mean much, and in an ulikely case, it will just add a few additional seconds to the boot - the boot is resilient to transient failures)
+ * all operations that happen during boot will be re-tried with exponential back-off in case of failure (i.e. failure of one API call does not mean much, and in an unlikely case, it will just add a few additional seconds to the boot - the boot is resilient to transient failures)
  * because of the way this is wired, only one partition is needed on the SD card: the boot partition. As an optimization the downloaded images are stored on this partition. The size of the partition should be enough to accomodate both the boot files themselves and the images. We recommend that the boot partition is at least 1GB in size
  * also because of how this is wired, the SD card is potentially written to only at boot time. Once the Pi has booted and you have the root filesystem, for all intents and purposes the card is only read from (for the lower layer of the union root filesystem)
  * if the images are not already cached, the process to download them may introduce a significant boot delay when the download needs to happen (e.g. if an image is 300M and the internet download speed is 5M/s, the download will take 60 seconds)
