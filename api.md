@@ -3,19 +3,28 @@ layout: page
 title: Api
 permalink: /api/
 ---
-The endpoint for the API is: `https://api.cattlepi.com`
-All examples provided will use curl to show interactions with the API.
+The endpoint for the API is: `https://api.cattlepi.com`.
+
+All examples here use `curl` to show interactions with the API.
 
 ### Content Type
+
 The API accepts JSON and produces JSON. 
 
 ### API Keys
+
 All requests to the API must be accompanied by an API key. Requests without an API key will fail with a `400 Bad Request` response status.  
 
 **The key must be passed in a header named 'X-Api-Key'**
 
 The provided demo API key is `deadbeef`  
-To request an API key, send an email with the subject `NEW API KEY REQUEST` to `hello@cattlepi.com` (we are currently working on automating this process)
+To request an API key, send an email:  
+
+To: `hello@cattlepi.com`
+
+Subject: `NEW API KEY REQUEST`
+
+(we are currently working on automating this process)
 
 Example request:
 ```bash
@@ -25,7 +34,7 @@ curl -H "Accept: application/json" \
      https://api.cattlepi.com/boot/testid/config
 ```
 
-Response would be:
+The corresponding response would be:
 ```json
 {
   "initfs": {
@@ -42,14 +51,17 @@ Response would be:
 ```
 
 ### Supported API Operations
+
 #### `GET https://api.cattlepi.com/boot/{deviceid}/config`
+
 This call is used to retrieve the boot configuration associated with a device.  
 As an example, use the same from the API Key section above.
 
 **A note on isolation**: two users (i.e. different API keys) can have the same deviceid without experiencing a collision. The device ids live in the scope of the API key and there is no way of accessing the device configuration of another user if you don't know the API key.
 
-#### POST https://api.cattlepi.com/boot/{deviceid}/config
-Call is used to update the boot configuration associated with a device.
+#### `POST https://api.cattlepi.com/boot/{deviceid}/config`
+
+THis call is used to update the boot configuration associated with a device.
 
 Example request:
 ```bash
@@ -68,7 +80,8 @@ At this iteration the API will **ignore** any parameter that is not rootfs.url, 
 
 **A note on isolation**: Because the demo API key is a shared one, this operation is explicitely disabled (you don't want a random stranger to set the boot target images for you devices, do you?). This restriction does not apply for your own API keys.
 
-#### GET https://api.cattlepi.com/images/{space}/filename
+#### `GET https://api.cattlepi.com/images/{space}/filename`
+
 This call is used to download an image. 
 The only valid values for the {space} path parameter are: `global` and the user's API key.
 
@@ -94,6 +107,7 @@ A sample response:
 ```
 
 ### Limits
+
 Ideally we would like the usage of this API to be free. We hope that, for the vast majority of users and use cases, this will be the case. For the exceptional cases we do have quotas on the number of API calls that you can make. This ensures that our running costs do not spiral out of control. 
 
 The quotas are as follows:
@@ -103,9 +117,9 @@ The quotas are as follows:
 
 Unused requests **do not accumulate**.
 
-What this mean is:
- * if you had a single device, and rebooted it each minute, you would not hit the API limits.
- * if you had to alter or update your configuration, you could make perhaps ten updates per hour _at the most_. Again, with one device, this should not constrain you in any way. 
- * the ten requests per month for downloading images may seem a bit draconic at first. The reasoning is as follows: the images themselves are large and the downloads will consume real bandwidth. If you have less than five devices, this quota should easily suit your needs (recall that the images are cached locally - this is the main reason why we want to cache them). If you need to get around this you could store the images somewhere your devices can access (intra- or internet), and point the config to those images. Alternatively, we are open to learning more about your use case (and perhaps helping you with the additional bandwidth).
+What this means is:
+ * if you had a single device, and rebooted it each minute, you would not hit the API limits
+ * if you had to alter or update your configuration, you could make perhaps ten updates per hour _at the most_. Again, with one device, this should not constrain you in any way 
+ * the ten requests per month for downloading images may seem a bit draconic at first. The reasoning is as follows: the images themselves are large and the downloads will consume real bandwidth. If you have less than five devices, this quota should easily suit your needs (recall that the images are cached locally - this is the main reason why we want to cache them). If you need to get around this you could store the images somewhere your devices can access (intra- or internet), and point the config to those images. Alternatively, we are open to learning more about your use case (and perhaps helping you with the additional bandwidth)
 
 We do not currently support uploading your custom images through our API. However, this is on our strategic roadmap. Again, we encourage you to reach out and tell us about your use case.

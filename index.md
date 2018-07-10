@@ -5,8 +5,10 @@
 layout: home
 ---
 [cattlepi.com](https://cattlepi.com) is built on the open-source project with the same name hosted here: [CattlePi](https://github.com/cattlepi/cattlepi).  
+
 The [README](https://github.com/cattlepi/cattlepi/blob/master/README.md) in the project root gives the vision behind the cattlepi project.  
-We recommended you go through the README and also the FAQ to build a better understanding. 
+
+We recommend that you go through the README and also the FAQ to gain a better understanding. 
 
 In a nutshell, there are three major pieces:
  * a Rasperry Pi device 

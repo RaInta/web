@@ -8,12 +8,14 @@ permalink: /flow/
 
 ### Step 1: Ping the API
 
-This verifes that the API is up, as well as to infer the current time (the Raspberry Pi does not have a real-time clock; knowing the time is vital for https access during the boot process).
+This verifies that the API is up, and also infers the current time (the Raspberry Pi does not have a real-time clock; knowing the time is vital for https access during the boot process).
+
 `GET https://api.cattlepi.com/ping`
 
 ### Step 2: Get the configuration associated with the device
 
-Each Raspberry Pi device should have a configuration associated with it. The device will try to retrieve this configuration, first using its own identified configuration. If that fails the identifier `default` is used.
+Each Raspberry Pi device should have a configuration associated with it. The device will try to retrieve this configuration, first using its own identified configuration. If that fails, the identifier `default` is used.
+
 By default, the device identifier is its MAC address. This can be over-ridden, and set to whatever you want. However, ideally, you would still desire different IDs for different devices.
 
 `GET https://api.cattlepi.com/boot/{deviceId}/config`  
@@ -39,7 +41,7 @@ The reason behind the fall-back to the default device ID is that you can use it 
 
 ### Step 3: Download the images specified in the config
 
-From the config, download and store locally the images specified in `initfs.url` and `rootfs.url`. The md5sum for each of these can be used to verify the images - by default this check is off.
+From the config, download and store locally the images specified in `initfs.url` and `rootfs.url`. The md5sum for each of these can be used to verify the images. By default this check is off.
 
 ### Step 4: Update initfs
 
@@ -47,11 +49,11 @@ If the contents of the boot partition are different to the contents specified vi
 
 ### Step 5: Mount the root filesystem and switch to it
 
-The final step of the boot process consists of building the root filesystem. The root is a Unionfs filesystem that has two layers: a bottom, read-only, layer specified in `rootfs.url`, and a top, read/write, layer that is a tmpfs filesystem.
+The final step of the boot process consists of building the root filesystem. The root is a [Unionfs filesystem](https://en.wikipedia.org/wiki/UnionFS) that has two layers: a bottom, read-only, layer specified in `rootfs.url`, and a top, read/write, layer that is a tmpfs filesystem.
 
 ## Implications of this boot flow
 
-TO re-iterate explicitly:
+To make some implications explicit:
  * the Raspberry Pi needs to be able to acquire a network address through DHCP _and_ needs to be able to do internet traffic. The boot process will fail if either are not met
  * all operations that happen during boot will be re-tried with exponential back-off in case of failure (i.e. failure of one API call does not mean much, and in an ulikely case, it will just add a few additional seconds to the boot - the boot is resilient to transient failures)
  * because of the way this is wired, only one partition is needed on the SD card: the boot partition. As an optimization the downloaded images are stored on this partition. The size of the partition should be enough to accomodate both the boot files themselves and the images. We recommend that the boot partition is at least 1GB in size
