@@ -25,10 +25,10 @@ When leveraging cattlepi, one can:
  In the configuration you can point the boot process to images that you have built on your own. 
 
  On this website you will find:
-  * [Flow](flow.md): understand the boot flow and how the loader interacts with the API 
-  * [Images](images.md): a list of prebuilt images that you can use, out of the box, on your Rapsberry Pis
-  * [Api](api.md): a description of the API, and how to interact with it outside of the boot process
-  * [Legal](legal.md): privacy and legal concerns if you decide to use the API (basically: this is provided as-is without any warranties + we respect your privacy)
+  * [Flow]({% link flow.md %}): understand the boot flow and how the loader interacts with the API 
+  * [Images]({% link images.md %}): a list of prebuilt images that you can use, out of the box, on your Rapsberry Pis
+  * [Api]({% link api.md %}): a description of the API, and how to interact with it outside of the boot process
+  * [Legal]({% link legal.md %}): privacy and legal concerns if you decide to use the API (basically: this is provided as-is without any warranties + we respect your privacy)
 
 You are encouraged to use `api.cattlepi.com` in the beginning. At least, until you grasp what cattlepi is.  
 
